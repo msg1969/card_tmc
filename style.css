@@ -1,0 +1,648 @@
+/* ==========================================================================
+   Design System - 8px Grid, Golden Ratio Sections, Color Psychology
+   ==========================================================================
+   Color Palette (70-25-5 Rule):
+     70% Base:    --bg-dark (#070B14), --text-primary (#F8FAFC), --text-secondary (#94A3B8)
+     25% Sub:     --accent-gold (#FACC15) — timeline, hashtag, footer
+      5% Main:    --accent-orange (#FF6B00) — "こっからっす!!" highlight only
+     Accent:      --accent-cyan (#00E5FF) — @handle link (complementary)
+     Accent:      Purple (#9333EA area) — INTJ badge only (intellectual)
+     UI:          --status-green (#10B981) — online indicator only
+
+   Font Scale (8px multiples):
+     12px (0.75rem) — small labels, tags, badges
+     16px (1rem)    — body, mission text, handle
+     24px (1.5rem)  — catchphrase
+     32px (2rem)    — name, highlight "こっからっす!!"
+
+   Spacing Scale (8px multiples):
+     8px  (0.5rem)  — tight gaps
+     16px (1rem)    — group-internal spacing
+     24px (1.5rem)  — medium spacing
+     32px (2rem)    — section spacing
+     40px (2.5rem)  — card padding
+     48px (3rem)    — large section gaps
+   ========================================================================== */
+
+:root {
+    --bg-dark: #070B14;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --accent-orange: #FF6B00;
+    --accent-orange-glow: rgba(255, 107, 0, 0.4);
+    --accent-cyan: #00E5FF;
+    --accent-cyan-glow: rgba(0, 229, 255, 0.3);
+    --accent-gold: #FACC15;
+    --accent-gold-glow: rgba(250, 204, 21, 0.3);
+    --status-green: #10B981;
+
+    --font-jp: 'Noto Sans JP', sans-serif;
+    --font-en: 'Outfit', sans-serif;
+
+    /* 8px grid spacing tokens */
+    --space-1: 0.5rem;
+    /* 8px */
+    --space-2: 1rem;
+    /* 16px */
+    --space-3: 1.5rem;
+    /* 24px */
+    --space-4: 2rem;
+    /* 32px */
+    --space-5: 2.5rem;
+    /* 40px */
+    --space-6: 3rem;
+    /* 48px */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-jp);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4);
+    /* 32px */
+    position: relative;
+    overflow-x: hidden;
+    font-size: 1rem;
+    /* 16px base */
+    line-height: 1.5;
+    /* 24px line-height = 8*3 */
+}
+
+/* ==========================================================================
+   Dynamic Background Blobs
+   ========================================================================== */
+.app-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    animation: float 20s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+    top: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-orange-glow), transparent);
+}
+
+.blob-2 {
+    bottom: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-cyan-glow), transparent);
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-30px, 30px) scale(1.1);
+    }
+
+    100% {
+        transform: translate(30px, -30px) scale(0.9);
+    }
+}
+
+/* ==========================================================================
+   Card Container — Golden Ratio Layout
+   Total card ~618px content height target:
+     Upper (header+catch+mission) ≈ 382px (61.8%)
+     Lower (timeline+footer)     ≈ 236px (38.2%)
+   ========================================================================== */
+.container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 720px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--space-3);
+    /* 24px = 8*3 */
+    padding: var(--space-5);
+    /* 40px = 8*5 */
+    position: relative;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+        0 32px 64px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    /* 4px subtle lift */
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        0 0 40px var(--accent-orange-glow);
+}
+
+/* Glassmorphism Reflection */
+.card-reflection {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.04) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    animation: shine 6s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    20% {
+        left: 200%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* ==========================================================================
+   MBTI Badge (top-right) — Purple accent for intellect
+   ========================================================================== */
+.mbti-badge {
+    position: absolute;
+    top: var(--space-5);
+    /* 40px — aligned with card padding top */
+    right: var(--space-5);
+    /* 40px — aligned with card padding right */
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    /* 4px — tight gap for badge interior */
+    font-size: 0.75rem;
+    /* 12px */
+    font-weight: 700;
+    font-family: var(--font-en);
+    color: #D8B4E2;
+    background: rgba(147, 51, 234, 0.1);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    padding: var(--space-1) var(--space-2);
+    /* 8px 16px */
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.mbti-badge svg {
+    width: 12px;
+    /* 12px */
+    height: 12px;
+}
+
+.mbti-badge:hover {
+    background: rgba(147, 51, 234, 0.25);
+    border-color: rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 16px rgba(147, 51, 234, 0.3);
+    /* 16px = 8*2 */
+    color: #F3E8FF;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Header Section — Proximity: tight grouping
+   ========================================================================== */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    /* 24px = 8*3 */
+    margin-bottom: var(--space-2);
+    /* 16px → tighter before divider (proximity) */
+}
+
+.avatar-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 96px;
+    /* 96px = 8*12 ← was 90px */
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+        linear-gradient(135deg, var(--accent-orange), var(--accent-cyan)) border-box;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    /* 8, 24 = 8*1, 8*3 */
+}
+
+/* Online status indicator */
+.status-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 16px;
+    /* 16px = 8*2 ← was 18px */
+    height: 16px;
+    background-color: var(--status-green);
+    border-radius: 50%;
+    border: 3px solid var(--bg-dark);
+}
+
+.status-indicator .ping {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--status-green);
+    opacity: 0.6;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+
+    75%,
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Profile Info — Repetition: consistent spacing */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    /* 8px ← was 4px (not 8px multiple) */
+}
+
+.role {
+    font-size: 0.75rem;
+    /* 12px = 8+4...close, but 12px is standard small ← was 13.6px */
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.name {
+    font-size: 2rem;
+    /* 32px = 8*4 ← was 28px */
+    font-weight: 900;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    /* 40px = 8*5 */
+}
+
+.handle {
+    font-family: var(--font-en);
+    font-size: 1rem;
+    /* 16px = 8*2 ← was 14.4px */
+    font-weight: 400;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    transition: text-shadow 0.3s ease;
+    margin-top: var(--space-1);
+    /* 8px */
+}
+
+.handle:hover {
+    text-shadow: 0 0 8px var(--accent-cyan-glow);
+    /* 8px glow */
+}
+
+/* Divider — Proximity: reduced margin to keep header group close */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin: var(--space-2) 0;
+    /* 16px ← was 32px: tighter to keep visual group */
+}
+
+/* ==========================================================================
+   Body Section — Visual Hierarchy via contrast
+   ========================================================================== */
+
+/* Catchphrase — Hierarchy level 2 */
+.catchphrase {
+    font-size: 1.5rem;
+    /* 24px = 8*3 ← was 22.4px */
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: var(--space-3);
+    /* 24px */
+    line-height: 1.333;
+    /* 32px = 8*4 */
+}
+
+/* Highlight "こっからっす!!" — Hierarchy level 1 (same as name) */
+.catchphrase .highlight {
+    background: linear-gradient(135deg, var(--accent-orange), #FFAB00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 2rem;
+    /* 32px = 8*4 ← was 28.8px */
+    display: inline-block;
+    margin-top: var(--space-1);
+    /* 8px */
+}
+
+/* Mission Box */
+.mission-box {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--space-2);
+    /* 16px = 8*2 */
+    padding: var(--space-3);
+    /* 24px = 8*3 */
+    margin-bottom: var(--space-4);
+    /* 32px = 8*4 */
+}
+
+.mission-box p {
+    font-size: 1rem;
+    /* 16px = 8*2 ← was 15.2px */
+    color: var(--text-primary);
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   Timeline Section — Golden Ratio lower portion (38.2%)
+   ========================================================================== */
+.timeline-section {
+    padding-top: var(--space-4);
+    /* 32px */
+    margin-top: var(--space-2);
+    /* 16px */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 var(--space-1);
+    /* 8px */
+}
+
+.timeline-bg-line {
+    position: absolute;
+    top: 20px;
+    /* center of 40px icon (was 22px for 44px) */
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(to right,
+            var(--accent-gold) 0%,
+            var(--accent-gold) 75%,
+            #334155 75%,
+            #334155 100%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.timeline-icon {
+    width: 40px;
+    /* 40px = 8*5 ← was 44px */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0F172A;
+    border: 2px solid var(--accent-gold);
+    /* unified gold ← was #A1823C */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--space-1);
+    /* 8px ← was 16px, tighter proximity */
+    transition: all 0.3s ease;
+}
+
+.timeline-item.dimmed .timeline-icon {
+    border-color: #475569;
+}
+
+.timeline-item.active .timeline-icon.glow-yellow {
+    box-shadow: 0 0 24px var(--accent-gold-glow);
+    /* 24px = 8*3 */
+    background-color: rgba(250, 204, 21, 0.15);
+    border-color: var(--accent-gold);
+}
+
+.timeline-content {
+    text-align: center;
+}
+
+.timeline-content h4 {
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    /* 12px ← was 13.6px */
+    color: var(--accent-gold);
+    /* unified gold */
+    margin-bottom: 0;
+    /* 0px — tight proximity with icon */
+    font-weight: 600;
+}
+
+.timeline-item.active .timeline-content h4 {
+    color: var(--accent-gold);
+    font-weight: 800;
+}
+
+.timeline-item.dimmed .timeline-content h4 {
+    color: #64748B;
+}
+
+.timeline-content span {
+    font-size: 0.75rem;
+    /* 12px */
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   Footer — Visual Guidance: Z-pattern landing zone (bottom-right CTA)
+   ========================================================================== */
+.card-footer-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: var(--space-6);
+    /* 48px = 8*6 */
+}
+
+.footer-left {
+    font-family: var(--font-jp);
+    font-weight: 700;
+    color: var(--accent-gold);
+    /* unified gold */
+    font-size: 1rem;
+    /* 16px — matched with button text for balance */
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    /* 8px */
+}
+
+.hashtag-link {
+    color: var(--accent-gold);
+    /* unified gold */
+    text-decoration: none;
+    font-size: 1rem;
+    /* 16px — matched with button for visual balance */
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.hashtag-link:hover {
+    color: #FDE68A;
+    /* lighter gold on hover */
+    text-shadow: 0 0 8px var(--accent-gold-glow);
+    /* 8px */
+}
+
+.x-logo-small {
+    width: 16px;
+    /* 16px = 8*2 ← was 20px */
+    height: 16px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.social-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    /* 8px */
+    padding: var(--space-1) var(--space-3);
+    /* 8px 24px — slim height, generous width */
+    background-color: var(--text-primary);
+    color: var(--bg-dark);
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: var(--font-en);
+    font-size: 1rem;
+    /* 16px */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* 4, 8 = 8 multiples */
+}
+
+.social-btn-white:hover {
+    background-color: #E2E8F0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+    /* 8, 16 */
+}
+
+/* ==========================================================================
+   Responsive — Mobile
+   ========================================================================== */
+@media (max-width: 640px) {
+    .card {
+        padding: var(--space-3);
+        /* 24px */
+    }
+
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .name {
+        align-items: center;
+    }
+
+    .catchphrase {
+        font-size: 1.5rem;
+        /* 24px = 8*3 */
+    }
+
+    .catchphrase .highlight {
+        font-size: 1.5rem;
+        /* 24px */
+    }
+
+    .timeline {
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .timeline-item {
+        min-width: 96px;
+        /* 96px = 8*12 */
+    }
+
+    .timeline-bg-line {
+        width: 400px;
+    }
+
+    .card-footer-new {
+        flex-direction: column;
+        gap: var(--space-2);
+        /* 16px */
+    }
+
+    .mbti-badge {
+        top: var(--space-3);
+        /* 24px */
+        right: var(--space-3);
+    }
+}
