@@ -382,6 +382,7 @@ body {
     /* 24px = 8*3 */
     margin-bottom: var(--space-4);
     /* 32px = 8*4 */
+    text-align: center;
 }
 
 .mission-box p {
@@ -389,6 +390,14 @@ body {
     /* 16px = 8*2 ← was 15.2px */
     color: var(--text-primary);
     opacity: 0.9;
+}
+
+.mission-text {
+    display: inline-block;
+    text-align: left;
+    line-height: 2;
+    /* 32px = 8*4 */
+    font-weight: 500;
 }
 
 /* ==========================================================================
@@ -524,6 +533,8 @@ body {
     text-decoration: none;
     font-size: 1rem;
     /* 16px — matched with button for visual balance */
+    line-height: var(--space-3);
+    /* 24px = 8*3 — explicit for vertical alignment */
     font-weight: 700;
     transition: all 0.3s ease;
 }
