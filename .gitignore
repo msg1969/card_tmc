@@ -1,1 +1,11 @@
 .DS_Store
+_site/
+.build-*/
+__pycache__/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+スクリーンショット*.png
+Screenshot*.png

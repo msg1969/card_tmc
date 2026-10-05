@@ -3,158 +3,110 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自己紹介カード | とやめん</title>
-    <meta name="description" content="斜陽産業の零細フランチャイジー？ 人生をもっと自由に！ こっからっす!! とやめんの自己紹介カード。">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#10151d">
+    <title>とやめん | AIセキュア1st 自己紹介カード</title>
+    <meta name="description" content="とやめんの自己紹介カード。デザイン講座修了、デジマケ人材育成を経て、現在は生成AIセキュア開発講座を受講中。人生をもっと自由に！こっからっす!!">
 
-    <!-- OGP (Open Graph Protocol) — Slack/SNSリンクプレビュー用 -->
-    <meta property="og:title" content="自己紹介カード | とやめん @TMC2020">
-    <meta property="og:description" content="限界集落から未来を切り拓く！SUNABACOで生き残る仕組み体得し、自身と組織の成長を成し遂げます！ こっからっす!!">
+    <meta property="og:title" content="とやめん | AIセキュア1st">
+    <meta property="og:description" content="デザイン講座修了、デジマケ人材育成を経て、生成AIセキュア開発講座を受講中。限界集落から未来を切り拓く！こっからっす!!">
     <meta property="og:image" content="https://msg1969.github.io/card_tmc/ogp.png">
+    <meta property="og:image:alt" content="とやめん — 人生をもっと自由に！こっからっす!! #AIセキュア1st">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://msg1969.github.io/card_tmc/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="とやめん自己紹介カード">
     <meta property="og:locale" content="ja_JP">
 
-    <!-- Twitter Card — X(Twitter)用プレビュー -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@TMC2020">
     <meta name="twitter:creator" content="@TMC2020">
-    <meta name="twitter:title" content="自己紹介カード | とやめん">
-    <meta name="twitter:description" content="限界集落から未来を切り拓く！SUNABACOで生き残る仕組み体得し、自身と組織の成長を成し遂げます！ こっからっす!!">
+    <meta name="twitter:title" content="とやめん | AIセキュア1st">
+    <meta name="twitter:description" content="デザイン講座修了、デジマケ人材育成を経て、生成AIセキュア開発講座を受講中。人生をもっと自由に！こっからっす!!">
     <meta name="twitter:image" content="https://msg1969.github.io/card_tmc/ogp.png">
+    <meta name="twitter:image:alt" content="とやめん — 人生をもっと自由に！こっからっす!! #AIセキュア1st">
 
+    <link rel="icon" href="IMG_9375.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@400;600;700&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
-    <div class="app-background">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
     <main class="container">
-        <div class="card">
-            <!-- Glass reflection effect -->
-            <div class="card-reflection"></div>
-
-            <a href="https://www.16personalities.com/ja/intj型の性格" target="_blank" class="mbti-badge">
-                INTJ-A
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-            </a>
-
+        <article class="card" aria-labelledby="profile-name">
             <header class="card-header">
-                <div class="avatar-wrapper">
-                    <!-- The generated avatar will be used here. For now using a placeholder or local file -->
-                    <img src="IMG_9375.png" alt="とやめんのアバター" class="avatar"
-                        onerror="this.src='https://ui-avatars.com/api/?name=To&background=FF6B00&color=fff&size=120'">
-                    <div class="status-indicator">
-                        <span class="ping"></span>
-                        <span class="dot"></span>
-                    </div>
-                </div>
+                <img src="IMG_9375.png" alt="とやめんの猫のアバター" class="avatar" width="104" height="104">
                 <div class="profile-info">
                     <p class="role">斜陽産業の零細フランチャイジー</p>
-                    <h1 class="name">とやめん</h1>
+                    <h1 id="profile-name" class="name">とやめん</h1>
                 </div>
+                <a href="https://www.16personalities.com/ja/intj型の性格" target="_blank" rel="noopener noreferrer"
+                    class="mbti-badge" aria-label="INTJ-Aの性格紹介（新しいタブで開きます）">
+                    INTJ-A <span aria-hidden="true">↗</span>
+                </a>
             </header>
 
-            <div class="divider"></div>
-
-            <section class="card-body">
-                <h2 class="catchphrase">人生をもっと自由に！<br><span class="highlight">こっからっす!!</span></h2>
-                <div class="mission-box">
-                    <p class="mission-text">
-                        限界集落から未来を切り拓く！<br>
-                        SUNABACOで生き残る仕組み体得し<br>
-                        自身と組織の成長を成し遂げます！<br>
-                        己の未在を痛感しつつ<br>
-                        SUNABACOお遍路逆打ち中！！
-                    </p>
-                </div>
-
-                <section class="timeline-section">
-                    <div class="timeline">
-                        <div class="timeline-bg-line"></div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-icon"><span style="font-size: 1rem;">💻</span></div>
-                            <div class="timeline-content">
-                                <h4>DX</h4>
-                                <span>15th</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-icon"><span style="font-size: 1rem;">🤖</span></div>
-                            <div class="timeline-content">
-                                <h4>AI</h4>
-                                <span>4th</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-icon"><span style="font-size: 1rem;">⌨️</span></div>
-                            <div class="timeline-content">
-                                <h4>Programming</h4>
-                                <span>2026新年</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item active">
-                            <div class="timeline-icon glow-yellow">
-                                <span style="font-size: 1.5rem;">🎨</span>
-                            </div>
-                            <div class="timeline-content">
-                                <h4>Design</h4>
-                                <span>14th ← 今ここ</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item dimmed">
-                            <div class="timeline-icon"><span
-                                    style="font-size: 1rem; filter: grayscale(1) opacity(0.6);">🔄</span></div>
-                            <div class="timeline-content">
-                                <h4>DX??th</h4>
-                                <span>仏を殺せ！？</span>
-                            </div>
-                        </div>
+            <section class="intro" aria-labelledby="motto">
+                <h2 id="motto" class="catchphrase"><span class="catchphrase-copy"><span class="catchphrase-lead">人生をもっと自由に！</span><span class="highlight">こっからっす!!</span></span></h2>
+                <div class="mission">
+                    <div class="mission-copy">
+                        <p class="mission-lead">限界集落から未来を切り拓く！</p>
+                        <p>SUNABACOで生き残る仕組みを体得し、<br class="desktop-break">自身と組織の成長を成し遂げます！</p>
+                        <p class="pilgrimage">己の未在を痛感しつつ<br>SUNABACOお遍路逆打ち中！！</p>
                     </div>
-                </section>
+                </div>
             </section>
 
-            <footer class="card-footer-new">
-                <div class="footer-left">
-                    <a href="https://twitter.com/hashtag/SUNABACOデザイン" target="_blank"
-                        class="hashtag-link">#SUNABACOデザイン</a>
-                </div>
-                <div class="footer-right">
-                    <a href="https://x.com/TMC2020" target="_blank" class="qr-block">
-                        <span class="qr-label">
-                            <svg class="x-logo-tiny" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                            </svg>
-                            Follow on X
-                        </span>
-                        <div class="qr-code-frame">
-                            <img src="qrcode_x.com.png" alt="Follow @TMC2020 on X - QR Code" class="qr-code-img">
-                        </div>
+            <section class="journey" aria-label="受講歴">
+                <ol class="timeline" role="list">
+                    <li class="timeline-item">
+                        <span class="timeline-icon" aria-hidden="true">💻</span>
+                        <div class="timeline-content"><h3>DX</h3><p>15th</p></div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-icon" aria-hidden="true">🤖</span>
+                        <div class="timeline-content"><h3>AI</h3><p>4th</p></div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-icon" aria-hidden="true">⌨️</span>
+                        <div class="timeline-content"><h3>Programming</h3><p>2026新年</p></div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-icon" aria-hidden="true">🎨</span>
+                        <div class="timeline-content"><h3>Design</h3><p>14th</p></div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-icon" aria-hidden="true">📣</span>
+                        <div class="timeline-content"><h3>デジマケ</h3><p>人材育成</p></div>
+                    </li>
+                    <li class="timeline-item current" aria-current="step">
+                        <span class="timeline-icon" aria-hidden="true">🛡️</span>
+                        <div class="timeline-content"><h3>AIセキュア</h3><p>1st</p><span class="current-marker">今ここ</span></div>
+                    </li>
+                    <li class="timeline-item future">
+                        <span class="timeline-icon" aria-hidden="true">↻</span>
+                        <div class="timeline-content"><h3>DX</h3><p>仏を殺せ！？</p></div>
+                    </li>
+                </ol>
+            </section>
+
+            <footer class="card-footer">
+                <a href="https://x.com/hashtag/AIセキュア1st" target="_blank" rel="noopener noreferrer"
+                    class="hashtag-link" aria-label="#AIセキュア1stをXで見る（新しいタブで開きます）"><span class="hashtag-text">#AIセキュア1st</span><span class="link-arrow" aria-hidden="true">↗</span></a>
+                <a href="https://x.com/TMC2020" target="_blank" rel="noopener noreferrer" class="social-link"
+                    aria-label="とやめん @TMC2020をXでフォロー（新しいタブで開きます）">
+                    <span class="social-copy">
+                        <span class="qr-label">Follow on X <span aria-hidden="true">↗</span></span>
                         <span class="qr-handle">@TMC2020</span>
-                    </a>
-                </div>
+                    </span>
+                    <span class="qr-code-frame"><img src="qrcode_x.com.png" alt="Xのプロフィールを開くQRコード" class="qr-code-img" width="80" height="80"></span>
+                </a>
             </footer>
-        </div>
+        </article>
     </main>
 </body>
 
