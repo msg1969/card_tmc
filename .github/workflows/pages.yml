@@ -3,6 +3,8 @@ name: Publish introduction card
 on:
   push:
     branches: [main]
+  # 更新PRでもビルド・artifact作成を確認する。deployはmainに限定する。
+  pull_request:
   workflow_dispatch:
 
 permissions:
